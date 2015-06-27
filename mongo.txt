@@ -61,3 +61,31 @@ Finding Using OR Operator
 ==============================
 
 db.posts.find( { $or: [{ "user": "alice" }, { "user": "bob" }] }) // returns posts created by bob or alice
+
+
+Updating Multiple Records
+===========================
+db.posts.update({
+"user": "alice"
+}, {
+$set: {
+"title": "Second Post"
+}
+}, {
+multi: true
+})
+
+//in this the posts created by alice are updated by changing the title as mentioned in the second attribute, the third attribute 
+refers to the multiple instances update; i.e it updates all the records of alice this way.
+
+
+Updating record using Save Command
+=======================================
+
+db.posts.save({
+"_id": ObjectId("558f2757fe9935c1f4a1dc3a"),
+"title": "Second Post",
+"user": "alice"
+});
+
+
