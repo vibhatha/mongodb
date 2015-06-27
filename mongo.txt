@@ -88,4 +88,23 @@ db.posts.save({
 "user": "alice"
 });
 
+//updates the record having the id of this particular object, if there 
 
+
+Deleting Records
+====================
+ db.posts.remove()
+ 
+ 
+ Deleting Record by Attributes
+ =============================
+ 
+ db.posts.remove({ "user": "alice" })
+ 
+ 
+ Deleting First Record by Attributes
+ =======================================
+ db.posts.remove({ "user": "alice" }, true)
+
+
+// the first post created by the alice is deleted
