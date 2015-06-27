@@ -1,0 +1,63 @@
+use mean 
+
+<comment> This goes to the mean database but it is not being created loosely exists and after adding data it exists. 
+The way is quite different with reference to the Relational Databases and SQL </comment>
+/////////////////////////////////////////////////
+======================================================================
+
+use posts
+
+CREATING AN ENTRY
+====================
+db.posts.insert({"title":"First Post", "user": "John"})
+
+Updating or Adding new Entry
+=============================
+
+db.posts.update({
+"user": "alice"
+}, {
+"title": "Second Post",
+"user": "alice"
+}, {
+upsert: true
+})
+
+
+//here the upsert does if the user alice is not existing in the database, instead of updating, a new entry is created.
+
+
+Creating New Record by Save command
+=======================================
+db.posts.save({"title":"Third Post", "user": "Mirinda"})
+
+
+Finding a Record(or Document)
+==============================
+
+db.posts.find()  //this gives all the records in the posts document
+db.posts.find({}) // same result
+
+
+Find a record based on a parameter 
+====================================
+db.posts.find({ "user": "alice" }) // this gives the posts which are created by the user alice, in this the attribute is user and                                      // the value is alice
+
+
+//posts
+
+Finding using OR operator
+===========================
+db.posts.find({ "user": { $in: ["alice", "bob"] } }) // this gives posts created by alice or bob
+
+
+
+Findindg Using AND Operator
+=============================
+db.posts.find({ "user": "alice", "commentsCount": { $gt: 10 } }) //quite simple add new attributes and it will do and automatically
+
+
+Finding Using OR Operator
+==============================
+
+db.posts.find( { $or: [{ "user": "alice" }, { "user": "bob" }] }) // returns posts created by bob or alice
